@@ -1,0 +1,66 @@
+﻿@model muscshop.ViewModel.ShoppingCartViewModel
+
+<h3>
+    <em>Your Cart</em>
+</h3>
+
+<p>
+    @Html.ActionLink("Checkout>>>", "Payment", "CheckOut")
+</p>
+
+<div id="remove-message"></div>
+
+<table class="table">
+    <tr>
+        <th>
+            Album Name
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.CartItems)
+    {
+        <tr id="row-@item.RecordId">
+            <td>
+                @item.Album.Title
+            </td>
+            <td>
+                @item.Album.Price
+            </td>
+            <td id="item-count-@item.RecordId">
+                @item.Count
+            </td>
+            <td>
+                <a class="RemoveLink" id="@item.RecordId" href="#">Remove</a>
+            </td>
+        </tr>
+
+    }
+    <tr>
+        <td></td>
+        <td></td>
+        <td>Total:</td>
+        <td id="cart-total">@Model.CartTotal</td>
+    </tr>
+
+</table>
+
+
+
+
+
+
+
+
+@section scripts
+{
+
+    <script src="~/Scripts/myscripts/musicshopscript.js"></script>
+
+}
